@@ -1,20 +1,24 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Unit</title>
+        <title>player</title>
     </head>
 
     <body>
-        {% if unit_name %} 
-            <h1>{{ unit_name }}</h1>
-            {% if unit_order %}
-                Order: {{ unit_order }}
-            {% else %}
-                Order: None
-            {% endif %}
-
+        {% if player_name %} 
+            <h1>{{ player_name }}</h1>
+            <h2>Cities owned:</h2>
+            {% for city in player_cities %}
+                <strong>{{ city.name }}</strong>
+                <br>
+            {% endfor %}
+            <h2>Units owned:</h2>
+            {% for unit in player_units %}
+                {{ unit.name }} 
+                <br>
+            {% endfor %}
         {% else %}
-            <strong> This unit does not exist!</strong>
+            <strong> This player does not exist!</strong>
         {% endif %}
     </body>
 </html>

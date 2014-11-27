@@ -28,5 +28,15 @@ class City(models.Model):
     def __str__(self):
         return self.name
 
-    def add_unit(self, unit):
-        self.units.append(unit)
+class Player(models.Model):
+    name = models.CharField(max_length=128, unique=True)
+    slug = models.SlugField(unique=True)
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.name)
+        super(Player, self).save(*args, **kwargs)
+
+    def __str__(self):
+        return self.name
+
+    

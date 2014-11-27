@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render
-from stabbening.models import Unit, City
+from stabbening.models import Unit, City, Player
 # Create your views here.
 def unit(request, unit_name_slug):
     context_dict = {}
@@ -27,6 +27,17 @@ def city(request, city_name_slug):
     except City.DoesNotExist:
         pass
     return render(request, 'stabbening/city.html', context_dict)
+
+def player(request, player_name_slug):
+    context_dict = {}
+    try:
+        player = Player.objects.get(slug=player_name_slug)
+        context_dict['player_name'] = player.name
+        context_dict['player_cities'] = City.objects.filter(owner=player)
+        context_dict['player_units'] = Unit.objects.filter(owner=player)
+    except Player.DoesNotExist:
+        pass
+    return render(request, 'stabbening/player.html', context_dict)
 
 def index(request):
     return HttpResponse("This is the index!")
