@@ -9,12 +9,12 @@
             <h1>{{ player_name }}</h1>
             <h2>Cities owned:</h2>
             {% for city in player_cities %}
-                <strong>{{ city.name }}</strong>
+            <strong><a href="/game/city/{{city.slug}}/">{{city.name}}</a></strong>
                 <br>
             {% endfor %}
             <h2>Units owned:</h2>
             {% for unit in player_units %}
-                {{ unit.name }} 
+            <a href="/game/unit/{{unit.slug}}/">{{ unit.name }}</a> 
                 <br>
             {% endfor %}
         {% else %}

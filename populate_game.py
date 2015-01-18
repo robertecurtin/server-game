@@ -26,6 +26,7 @@ def populate():
             c = add_city(name, p)
         elif instruction == 'U':
             u = add_unit(name, p, c)
+            c.add_unit(u)
 
 def add_unit(name, player, city):
     u = Unit.objects.get_or_create(name=name, owner=player, city=city)[0]

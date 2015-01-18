@@ -14,7 +14,8 @@
             {% endif %}
             <h2>Units in this city:</h2>
             {% for unit in city_units %}
-                {{ unit.name }} 
+            <a href="/game/unit/{{unit.slug}}/">{{ unit.name }}</a> 
+            <br>
             {% endfor %}
         {% else %}
             <strong> This city does not exist!</strong>
